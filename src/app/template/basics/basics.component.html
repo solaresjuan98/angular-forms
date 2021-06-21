@@ -1,0 +1,101 @@
+<h2>Template: Basics</h2>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="save()" #myForm="ngForm">
+            
+            <!-- product field -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label"> Product </label>
+
+                <div class="col-sm-9">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        [ngModel]="initForm.product"
+                        name="product"
+                        placeholder="Product name"
+                        autocomplete="off"
+                        required
+                        minlength="3" 
+                    />
+
+                    <span class="form-text text-danger"
+                          *ngIf="validName()"> Should contain 3 letters </span>
+                </div>
+            </div>
+
+            <!-- price field -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label"> Price </label>
+
+                <div class="col-sm-9">
+                    <input type="number" 
+                            class="form-control" 
+                            [ngModel]="initForm.price"
+                            name="price"
+                            placeholder="Product price"
+                            min="0"
+                            required 
+                    />
+                    <span class="form-text text-danger"
+                            *ngIf="validPrice()">The price must be 0 or greater </span>
+                </div>
+            </div>
+
+            <!-- existences field -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label"> Price </label>
+
+                <div class="col-sm-9">
+                    <input type="number"
+                            [ngModel]="initForm.available"
+                            name="available" 
+                            customMin
+                            [minValue]="0"
+                            class="form-control" 
+                            placeholder="Available units"
+                            required 
+                    />
+                </div>
+            </div>
+
+            <!-- save button -->
+            <div class="row">
+                <div class="col">
+                    <button type="submit"
+                            [disabled]="myForm.invalid" 
+                            class="btn btn-success float-end">
+                        Save
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        
+        <span>Valid</span>
+        <pre>{{myForm.valid}}</pre>
+
+        <span>Pristine</span>
+        <pre>{{myForm.pristine}}</pre>
+
+        <span>Touched</span>
+        <pre>{{myForm.touched}}</pre>
+
+        <span>Valid</span>
+        <pre>{{myForm.value | json}}</pre>
+
+        <span>CustomDirective</span>
+        <pre>{{myForm.controls.available?.errors | json}}</pre>
+
+
+    </div>
+</div>
