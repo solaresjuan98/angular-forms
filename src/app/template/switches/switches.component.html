@@ -1,1 +1,73 @@
-<p>switches works!</p>
+<h2>Template: Switches</h2>
+<hr>
+
+<form #myForm="ngForm">
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Gender</label>
+
+        <div class="col-sm-9">
+            <!-- male -->
+            <div class="form-check">
+                <input class="form-check-input" 
+                        type="radio" 
+                        name="genderRadio" 
+                        id="maleRadio">
+                <label class="form-check-label" for="maleRadio">
+                    Male
+                </label>
+            </div>
+
+
+            <div class="form-check">
+                <input class="form-check-input" 
+                        type="radio" 
+                        name="genderRadio" 
+                        id="femaleRadio">
+                <label class="form-check-label" for="femaleRadio">
+                    Female
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- switches -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Notifications</label>
+        <div class="col-sm-9">
+            
+            <div class="form-check form-switch">
+                <input class="form-check-input" 
+                        type="checkbox" 
+                        id="flexSwitchCheckChecked">
+                <label class="form-check-label" 
+                        for="flexSwitchCheckChecked">I want to receive notifications</label>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">s</label>
+        <div class="col-sm-9">
+
+            <div class="form-check">
+                <input class="form-check-input" 
+                        type="checkbox" 
+                        id="flexSwitchCheckChecked">
+                <label class="form-check-label" 
+                        for="flexSwitchCheckChecked">Terms and conditions</label>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- submit button -->
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success float-end">Save</button>
+        </div>
+    </div>    
+
+
+</form>
