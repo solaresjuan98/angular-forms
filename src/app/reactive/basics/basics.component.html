@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col">
-        <form autocomplete="off" [formGroup]="myForm">
+        <form (ngSubmit)="save()" autocomplete="off" [formGroup]="myForm">
             
             <!-- product field -->
             <div class="mb-3 row">
@@ -19,7 +19,9 @@
 
                     />
 
-                    <span class="form-text text-danger"> Should contain 3 letters </span>
+                    <span class="form-text text-danger" 
+                            *ngIf="validField('name')"> Should contain 3 letters 
+                    </span>
                 </div>
             </div>
 
@@ -33,7 +35,8 @@
                             formControlName="price"
                             placeholder="Product price"
                     />
-                    <span class="form-text text-danger">The price must be 0 or greater </span>
+                    <span class="form-text text-danger"
+                    *ngIf="validField('price')">The price must be 0 or greater </span>
                 </div>
             </div>
 
@@ -47,6 +50,11 @@
                             class="form-control" 
                             placeholder="Available units"
                     />
+
+                    <span class="form-text text-danger"
+                    *ngIf="validField('existences')">The existences must be 0 or greater </span>
+
+
                 </div>
             </div>
 
@@ -54,8 +62,7 @@
             <div class="row">
                 <div class="col">
                     <button type="submit"
-                            class="btn btn-success float-end"
-                            [disabled]="myForm.invalid">
+                            class="btn btn-success float-end">
                         Save
                     </button>
                 </div>
@@ -81,6 +88,10 @@
 
         <span>Valid</span>
         <pre>{{myForm.value | json}}</pre>
+
+        <span>Price</span>
+        <pre>{{myForm.controls.price.errors | json}}</pre>
+
 
     </div>
 </div> 

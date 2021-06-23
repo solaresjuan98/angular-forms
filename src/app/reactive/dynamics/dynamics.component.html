@@ -1,7 +1,7 @@
 <h2>Reactive: <small>Dynamics</small></h2>
 <hr>
 
-<form>
+<form autocomplete="off" (ngSubmit)="save()" [formGroup]="myForm">
     
     <!-- name field -->
     <div class="row mb-3">
@@ -11,10 +11,10 @@
                 type="text" 
                 class="form-control" 
                 placeholder="Person Name"
-                name="name"
+                formControlName="name"
                 required
             >
-            <span class="form-text text-danger">
+            <span class="form-text text-danger" *ngIf="validField('name')">
                 This field is required 
             </span>
 
@@ -28,9 +28,11 @@
         <div class="col-sm-9">
 
             <div class="input-group">
-                <input class="form-control" 
+                <input  type="text" 
+                        class="form-control" 
                         placeholder="Add favorite"
-                        name="newGame"
+                        [formControl]="newFavorite"
+                        (keyup.enter)="addFavorite()"
                 >
                 <button class="btn btn-outline-success" 
                         type="button">Add</button>
@@ -42,21 +44,22 @@
     <!-- Game list -->
     <div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label">Favorites</label>
-        <div class="col-sm-9">
+        <div class="col-sm-9"  formArrayName="favorites">
             
-            <!-- <div class="input-group mb-1" 
-                *ngFor="let game of user.favorites; let i = index;" 
-            >
-            
-                <input name="favorite_{{i}}"
-                    class="form-control"
-                    required
-                    >
-
+            <div class="input-group mb-1"                 
+                *ngFor="let favorite of favoritesArr.controls; let i = index">
+    
+                <input class="form-control" 
+                        [formControlName]="i">
+                
+                <!-- delete -->
                 <button class="btn btn-outline-danger" 
-                        type="button">Delete</button>
+                        type="button"
+                        (click)="delete(i)">
+                        Delete
+                </button>
 
-            </div> -->
+            </div>
 
             
 
@@ -67,8 +70,9 @@
         
         <div class="col-sm-12">
             <button 
-                type="button"
+                type="submit"
                 class="btn btn-success float-end"
+                
             >
                 Save
             </button>
@@ -81,3 +85,29 @@
 <span>User:</span>
 
 <pre>{{user | json}}</pre> -->
+
+<div class="row">
+    <div class="col">
+        
+        <span>Valid</span>
+        <pre>{{myForm.valid}}</pre>
+
+        <span>Pristine</span>
+        <pre>{{myForm.pristine}}</pre>
+
+        <span>Touched</span>
+        <pre>{{myForm.touched}}</pre>
+
+        <span>Value</span>
+        <pre>{{myForm.value | json}}</pre>
+
+        <span>Add game</span>
+        <pre>{{newFavorite.valid | json}}</pre>
+
+        <br>
+
+        <pre>{{newFavorite.value | json}}</pre>
+
+
+    </div>
+</div> 
