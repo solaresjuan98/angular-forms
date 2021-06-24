@@ -13,47 +13,49 @@ interface MenuItem {
       li {
         cursor: pointer;
       }
-      
-    `
-  ]
+    `,
+  ],
 })
 export class SidemenuComponent {
-
   templateMenu: MenuItem[] = [
     {
       text: 'Basics',
-      route: './template/basics'
+      route: './template/basics',
     },
     {
       text: 'Dynamics',
-      route: './template/dynamics'
+      route: './template/dynamics',
     },
     {
       text: 'Switches',
-      route: './template/switches'
+      route: './template/switches',
     },
   ];
 
   reactiveMenu: MenuItem[] = [
     {
       text: 'Basics',
-      route: './reactive/basics'
+      route: './reactive/basics',
     },
     {
       text: 'Dynamics',
-      route: './reactive/dynamics'
+      route: './reactive/dynamics',
     },
     {
       text: 'Switches',
-      route: './reactive/switches'
+      route: './reactive/switches',
     },
+  ];
+
+  authMenu: MenuItem[] = [
+    {
+      text: 'Register',
+      route: './auth/register'
+    },
+    {
+      text: 'Login',
+      route: './auth/login'
+    }
+
   ]
-
-
-
-
-
-
-
-
 }

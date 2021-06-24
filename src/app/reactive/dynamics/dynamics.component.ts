@@ -16,9 +16,9 @@ export class DynamicsComponent {
     name: ['', [Validators.required, Validators.minLength(3)]],
     favorites: this.formBuilder.array(
       [
-        ['Super Mario Bros', Validators.required ], 
-        ['Fifa 21', Validators.required]], 
-        Validators.required)
+        ['Super Mario Bros', Validators.required],
+        ['Fifa 21', Validators.required]],
+      Validators.required)
   });
 
   newFavorite: FormControl = this.formBuilder.control('', Validators.required);
@@ -43,12 +43,12 @@ export class DynamicsComponent {
   }
 
   addFavorite() {
-    if(this.newFavorite.invalid){
+    if (this.newFavorite.invalid) {
       return;
     }
 
     //this.favoritesArr.push( new FormControl(this.newFavorite.value, Validators.required));
-    this.favoritesArr.push( this.formBuilder.control(this.newFavorite.value, Validators.required));
+    this.favoritesArr.push(this.formBuilder.control(this.newFavorite.value, Validators.required));
     this.newFavorite.reset();
   }
 
