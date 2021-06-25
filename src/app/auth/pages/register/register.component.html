@@ -31,19 +31,38 @@
                             class="form-control" 
                             placeholder="User email"
                             formControlName="email">
+                <!-- <span class="form-text text-danger"
+                    *ngIf="emailRequired()">
+                    The email is required
+                </span>
+                <span class="form-text text-danger"
+                    *ngIf="emailFormat()">
+                    The email format is wrong
+                </span>
+                <span class="form-text text-danger"
+                    *ngIf="emailUsed()">
+                    This email is not available
+                </span> -->
                 <span class="form-text text-danger"
                     *ngIf="validField('email')">
-                    The email is required
+                    {{emailErrorMsg}}
                 </span>
                 </div>
             </div>
-
 
             <!-- nickname -->
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nickname</label>
                 <div class="col sm-9">
-                    <input type="text" class="form-control" placeholder="Nickname">
+                    <input type="text" 
+                            class="form-control" 
+                            formControlName="username"
+                            placeholder="Nickname">
+                    
+                    <span class="form-text text-danger"
+                            *ngIf="validField('username')">
+                            The username can not be juan333
+                        </span>
                 </div>
             </div>
 
@@ -51,16 +70,30 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Password</label>
                 <div class="col sm-9">
-                    <input type="password" class="form-control" placeholder="Password">    
+                    <input type="password" 
+                            class="form-control" 
+                            formControlName="password"
+                            placeholder="Password">    
                 </div>
-
+                <span class="form-text text-danger"
+                      *ngIf="validField('password')">
+                            Your password must have more than 6 characters
+                </span>
             </div>
 
             <!-- confirm password -->
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Confirm Password</label>
                 <div class="col sm-9">
-                    <input type="password" class="form-control" placeholder="Confirm password">    
+                    <input type="password" 
+                            class="form-control" 
+                            formControlName="password2"
+                            placeholder="Confirm password">  
+                            
+                    <span class="form-text text-danger"
+                            *ngIf="validField('password2')">
+                            Your passwords must match
+                    </span>
                 </div>
             </div>
 
@@ -68,7 +101,8 @@
             <div class="row">
                 <div class="col">
                     <button class="btn btn-success float-end"
-                        type="submit">Create User</button>
+                            type="submit"
+                            [disabled]="myForm.pending">Create User</button>
                 </div>
             </div>
 
@@ -79,8 +113,24 @@
 <h2>Form valid: </h2>
 <span>{{myForm.valid}}</span>
 
+<h2>Form status: </h2>
+<span>{{myForm.status}}</span>
+
+<h2>Form errors: </h2>
+<span>{{myForm.errors | json}}</span>
+
+
 <h5>Name:</h5>
 <pre>{{myForm.controls.name.errors | json}}</pre>
 
 <h5>Email:</h5>
 <pre>{{myForm.controls.email.errors | json}}</pre>
+
+<h5>Username:</h5>
+<pre>{{myForm.controls.username.errors | json}}</pre>
+
+<h5>Password:</h5>
+<pre>{{myForm.controls.password.errors | json}}</pre>
+
+<h5>Confirm password:</h5>
+<pre>{{myForm.controls.password2.errors | json}}</pre>
